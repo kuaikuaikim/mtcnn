@@ -8,7 +8,7 @@ from core.model import P_Net
 data_name='wider'
 model_path='../data/%s_model/pnet'%data_name
 
-def train_P_net(image_set, root_path, dataset_path, train_images_root_path,train_annotation_file_path, prefix,
+def train_P_net(train_images_root_path,train_annotation_file_path, prefix,
                 end_epoch, frequent, lr, batch_size):
 
     imdb = imagedb(train_images_root_path, train_annotation_file_path)
@@ -28,9 +28,9 @@ def parse_args():
     #                     default='../data/%s'%data_name, type=str)
     parser.add_argument('--model_path', dest='prefix', help='new model prefix',
                         default='./model', type=str)
-    parser.add_argument('--train_images_root_path', dest='train_images_root_path', help='output data folder',
+    parser.add_argument('--train_images_path', dest='train_images_root_path', help='output data folder',
                         default='../data', type=str)
-    parser.add_argument('--train_annotation_file_path', dest='train_annotation_file_path', help='output data folder',
+    parser.add_argument('--train_annotation_file', dest='train_annotation_file_path', help='output data folder',
                         default='../data', type=str)
     parser.add_argument('--end_epoch', dest='end_epoch', help='end epoch of training',
                         default=16, type=int)
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     args = parse_args()
     print 'Called with argument:'
     print args
-    train_P_net(args.image_set, args.root_path, args.dataset_path, args.train_images_root_path,args.train_annotation_file_path, args.prefix,
+    train_P_net(args.train_images_root_path,args.train_annotation_file_path, args.prefix,
                 args.end_epoch, args.frequent, args.lr, args.batch_size)
